@@ -5,9 +5,27 @@
 @section('container')
 <div class="container">
     <div class="row">
-        <div class="col-10">
+        <div class="col-6">
             <h1 class="mt-4">Products List</h1>
-            <table class="table table-hover">
+            <a href="/products/create" class="btn btn-primary my-3">Add Products</a>
+            @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+            <ul class="list-group">
+                @foreach ($products as $product)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ $product->products }}
+                    <a href="/products/{{ $product->id }}" class="badge badge-info">Detail</a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
+@endsection
+<!-- <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -35,8 +53,4 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-@endsection
+            </table> -->
